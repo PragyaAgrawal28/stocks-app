@@ -1,0 +1,45 @@
+{
+  "name":"Stock Details",
+  "short_name": "Stock",
+  "description":"Stock App",
+  "start_url": "/index.html",
+  "display" : "standalone",
+  "theme_color":"#7DBEEE",
+  "background_color":"white",
+  "scope":"/",
+  "orientation":"portrait",
+  "icons":[
+    {
+      "src":"images/burn/icon-72.png",
+      "sizes":"72x72",
+      "type":"image/png"
+    },
+    {
+      "src":"images/burn/icon-64.png",
+      "sizes":"64x64",
+      "type":"image/png"
+    },
+    {
+      "src":"images/burn/icon-114.png",
+      "sizes":"114x114",
+      "type":"image/png"
+    },
+    {
+      "src":"images/burn/icon-120.png",
+      "sizes":"120x120",
+      "type":"image/png"
+    },
+    {
+      "src":"images/burn/icon-144.png",
+      "sizes":"144x144",
+      "type":"image/png"
+    },
+    {
+      "src":"images/burn/icon-152.png",
+      "sizes":"152x152",
+      "type":"image/png"
+    }
+  ],
+
+  "splash_pages":null
+}

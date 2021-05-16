@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="icon" href='images/burn/favicon.ico'/>
+    <title>Stock Details</title>
+    <style>
+        body{
+            background-color: #fffebe;
+        }
+        h1{
+            background-color:#fff461;
+            width: 70%;
+            -webkit-border-radius: 15px; 
+            border: solid 1px #ffffff;
+        }
+        table{
+            background-color:#fffebe;
+            border-spacing: 10px;
+            padding: 20px;
+            width: 70%;
+            border-radius: 10px;
+            border: solid 1px #ffffff;
+        }
+        th{
+            background-color:#ffffff;
+            padding: 5px;
+            text-align: center;
+            -webkit-border-radius: 15px;            
+            
+        }
+
+        tr{
+            background-color:#ffffff;
+            padding: 10px;
+            text-align: center;
+            height: 30px;
+            
+        }
+        
+        th:hover{background-color:#bbf0f7;}
+
+        tr:hover{background-color:#bbf0f7;}
+    </style>
+</head>
+<link rel="manifest" href="manifest.json">
+<body>
+    <center>
+    <h1>Stock display using PWA</h1>
+
+        <table id='show' border="1" >
+            <tr>
+                <th>Id</th>
+                <th>Cash and cash equivalents</th>
+                <th>Total current assets</th>
+                <th>Net Debt</th>
+                <th>Receivables</th>
+                <th>Investments</th>
+                <th>Payables</th>
+                <th>Date</th>
+            </tr>
+        </table>
+    </center>
+</body>
+
+<script>
+    window.addEventListener('DOMContentLoaded', (event) => {
+        fetch("https://financialmodelingprep.com/api/v3/financials/balance-sheet-statement/AAPL?period=quarter&apikey=demo")
+            .then(response => response.json())
+            .then(data => {
+                const { financials } = data;
+                var n = 1;
+                var addRow = document.getElementById('show');
+                for (let i = 0; i < 131; i++, n++) {
+                    var newRow = addRow.insertRow(n);
+                    var cell1 = newRow.insertCell(0);
+                    var cell2 = newRow.insertCell(1);
+                    var cell3 = newRow.insertCell(2);
+                    var cell4 = newRow.insertCell(3);
+                    var cell5 = newRow.insertCell(4);
+                    var cell6 = newRow.insertCell(5);
+                    var cell7 = newRow.insertCell(6);
+                    var cell8 = newRow.insertCell(7);
+                    cell1.innerHTML = i + 1;
+                    cell2.innerHTML = financials[i]['Cash and cash equivalents']
+                    cell3.innerHTML = financials[i]['Total current assets']
+                    cell4.innerHTML = financials[i]['Net Debt'];
+                    cell5.innerHTML = financials[i].Receivables;
+                    cell6.innerHTML = financials[i].Investments;
+                    cell7.innerHTML = financials[i].Payables;
+                    cell8.innerHTML = financials[i].date;
+                }
+            })
+            .catch(error => console.log('error', error));
+
+    });
+
+    if('serviceWorker' in navigator){
+        window.addEventListener('load',()=>{
+            navigator.serviceWorker.register('sw.js')
+        .then(registration =>{
+            console.log('service worker is registered',registration);
+        })
+        .catch(err =>{
+            console.log('Registration failed',err);
+        })
+        })
+    }
+
+
+</script>
+
+</html>
